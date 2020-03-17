@@ -1,0 +1,163 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0088ACC8 .scope module, "testbench_4bit_adder" "testbench_4bit_adder" 2 3;
+ .timescale -9 -12;
+v007751A8_0 .var "a", 3 0;
+v00775200_0 .var "b", 3 0;
+v00775258_0 .var "c", 3 0;
+v007752B0_0 .var "clk", 0 0;
+v00775308_0 .var "d", 3 0;
+v00775360_0 .net "ov", 0 0, L_00750060; 1 drivers
+v007753B8_0 .var "rst", 0 0;
+v00775410_0 .net "sum", 3 0, L_00775518; 1 drivers
+E_0088EF30/0 .event negedge, v007753B8_0;
+E_0088EF30/1 .event posedge, v007752B0_0;
+E_0088EF30 .event/or E_0088EF30/0, E_0088EF30/1;
+S_0088AFF8 .scope module, "DUT" "add4" 2 13, 3 1, S_0088ACC8;
+ .timescale 0 0;
+L_00750060 .functor OR 1, L_00775468, L_007754C0, C4<0>, C4<0>;
+v0088D710_0 .net *"_s11", 1 0, C4<00>; 1 drivers
+v00884AD0_0 .net *"_s12", 5 0, L_00775620; 1 drivers
+v00884B28_0 .net *"_s14", 5 0, L_00775678; 1 drivers
+v00884B80_0 .net *"_s17", 1 0, C4<00>; 1 drivers
+v00774C80_0 .net *"_s18", 5 0, L_007756D0; 1 drivers
+v00774CD8_0 .net *"_s20", 5 0, L_00775728; 1 drivers
+v00774D30_0 .net *"_s23", 1 0, C4<00>; 1 drivers
+v00774D88_0 .net *"_s24", 5 0, L_00775780; 1 drivers
+v00774DE0_0 .net *"_s4", 5 0, L_00775570; 1 drivers
+v00774E38_0 .net *"_s7", 1 0, C4<00>; 1 drivers
+v00774E90_0 .net *"_s8", 5 0, L_007755C8; 1 drivers
+v00774EE8_0 .net "a", 3 0, v007751A8_0; 1 drivers
+v00774F40_0 .net "b", 3 0, v00775200_0; 1 drivers
+v00774F98_0 .net "c", 3 0, v00775258_0; 1 drivers
+v00774FF0_0 .net "d", 3 0, v00775308_0; 1 drivers
+v00775048_0 .alias "ov", 0 0, v00775360_0;
+v007750A0_0 .net "s4", 0 0, L_007754C0; 1 drivers
+v007750F8_0 .net "s5", 0 0, L_00775468; 1 drivers
+v00775150_0 .alias "sum", 3 0, v00775410_0;
+L_00775468 .part L_00775780, 5, 1;
+L_007754C0 .part L_00775780, 4, 1;
+L_00775518 .part L_00775780, 0, 4;
+L_00775570 .concat [ 4 2 0 0], v007751A8_0, C4<00>;
+L_007755C8 .concat [ 4 2 0 0], v00775200_0, C4<00>;
+L_00775620 .arith/sum 6, L_00775570, L_007755C8;
+L_00775678 .concat [ 4 2 0 0], v00775258_0, C4<00>;
+L_007756D0 .arith/sum 6, L_00775620, L_00775678;
+L_00775728 .concat [ 4 2 0 0], v00775308_0, C4<00>;
+L_00775780 .arith/sum 6, L_007756D0, L_00775728;
+    .scope S_0088ACC8;
+T_0 ;
+    %set/v v007752B0_0, 0, 1;
+    %end;
+    .thread T_0;
+    .scope S_0088ACC8;
+T_1 ;
+    %set/v v007753B8_0, 0, 1;
+    %end;
+    .thread T_1;
+    .scope S_0088ACC8;
+T_2 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v007752B0_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v007753B8_0, 0, 0;
+    %ix/load 0, 4, 0;
+    %assign/v0 v007751A8_0, 0, 0;
+    %ix/load 0, 4, 0;
+    %assign/v0 v00775200_0, 0, 0;
+    %ix/load 0, 4, 0;
+    %assign/v0 v00775258_0, 0, 0;
+    %ix/load 0, 4, 0;
+    %assign/v0 v00775308_0, 0, 0;
+    %end;
+    .thread T_2;
+    .scope S_0088ACC8;
+T_3 ;
+    %wait E_0088EF30;
+    %load/v 8, v007751A8_0, 4;
+    %mov 12, 0, 2;
+   %cmpi/u 8, 15, 6;
+    %or 5, 4, 1;
+    %jmp/0xz  T_3.0, 5;
+    %load/v 8, v007751A8_0, 4;
+    %mov 12, 0, 28;
+    %addi 8, 1, 32;
+    %ix/load 0, 4, 0;
+    %assign/v0 v007751A8_0, 0, 8;
+T_3.0 ;
+    %load/v 8, v007751A8_0, 4;
+    %mov 12, 0, 2;
+    %cmpi/u 8, 15, 6;
+    %jmp/0xz  T_3.2, 4;
+    %load/v 8, v00775200_0, 4;
+    %mov 12, 0, 28;
+    %addi 8, 1, 32;
+    %ix/load 0, 4, 0;
+    %assign/v0 v00775200_0, 0, 8;
+T_3.2 ;
+    %load/v 8, v00775200_0, 4;
+    %mov 12, 0, 2;
+    %cmpi/u 8, 15, 6;
+    %mov 8, 4, 1;
+    %load/v 9, v007751A8_0, 4;
+    %mov 13, 0, 2;
+    %cmpi/u 9, 15, 6;
+    %mov 9, 4, 1;
+    %and 8, 9, 1;
+    %jmp/0xz  T_3.4, 8;
+    %load/v 8, v00775200_0, 4;
+    %mov 12, 0, 28;
+    %addi 8, 1, 32;
+    %ix/load 0, 4, 0;
+    %assign/v0 v00775200_0, 0, 8;
+    %load/v 8, v00775258_0, 4;
+    %mov 12, 0, 28;
+    %addi 8, 1, 32;
+    %ix/load 0, 4, 0;
+    %assign/v0 v00775258_0, 0, 8;
+T_3.4 ;
+    %vpi_func 2 39 "$random", 40, 32;
+    %mov 8, 40, 32;
+    %movi 40, 16, 32;
+    %mod 8, 40, 32;
+    %ix/load 0, 4, 0;
+    %assign/v0 v00775308_0, 0, 8;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_0088ACC8;
+T_4 ;
+    %vpi_call 2 43 "$monitor", "%4dns monitor: a=%d b=%d c=%d d=%d sum=%d ov=%d", $stime, v007751A8_0, v00775200_0, v00775258_0, v00775308_0, v00775410_0, v00775360_0;
+    %end;
+    .thread T_4;
+    .scope S_0088ACC8;
+T_5 ;
+    %delay 1000, 0;
+    %load/v 8, v007752B0_0, 1;
+    %inv 8, 1;
+    %set/v v007752B0_0, 8, 1;
+    %jmp T_5;
+    .thread T_5;
+    .scope S_0088ACC8;
+T_6 ;
+    %delay 1000, 0;
+    %load/v 8, v007753B8_0, 1;
+    %inv 8, 1;
+    %set/v v007753B8_0, 8, 1;
+    %jmp T_6;
+    .thread T_6;
+    .scope S_0088ACC8;
+T_7 ;
+    %delay 300000, 0;
+    %vpi_call 2 48 "$finish";
+    %end;
+    .thread T_7;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "testbench_4bit_adder.v";
+    "add4.v";
