@@ -50,7 +50,17 @@ module testbench;
         if (rst) begin
 
             // if idx >=0 then generate input value of a,b,cin
-            if (idx >= 0) begin
+            if (idx == 0) begin
+                in_a <= 0;
+                in_b <= 0;        
+                cin <= 0;            
+            end
+			else if(idx == 1) begin
+			    in_a <= 65535;
+				in_b <= 0;
+				cin <= 1;
+			end
+			else if (idx >= 2) begin
                 in_a <= {$random} % 65535;
                 in_b <= {$random} % 65535;        
                 cin <= {$random} % 2;            
@@ -64,7 +74,7 @@ module testbench;
 			correct_ans <= in_a + in_b + cin;
             write <= write + 1;
 
-            if (write == 8) begin
+            if (write == 9) begin
 
                 if ({cout,sum} == correct_ans) begin
 
