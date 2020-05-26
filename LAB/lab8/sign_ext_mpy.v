@@ -1,0 +1,153 @@
+`include "FA.v"
+`include "HA.v"
+module MPY(clk, a, b, product);
+    input clk;
+    input [31:0] a, b;
+    wire [31:0] ab0, ab1, ab2, ab3, ab4, ab5, ab6, ab7, ab8, ab9, ab10, ab11, ab12, ab13, ab14, ab15, ab16, ab17, ab18, ab19, ab20, ab21, ab22, ab23, ab24, ab25, ab26, ab27, ab28, ab29, ab30, ab31;
+    wire [63:0] add0, add1, add2, add3, add4, add5, add6, add7, add8, add9, add10, add11, add12, add13, add14, add15, add16, add17, add18, add19, add20, add21, add22, add23, add24, add25, add26, add27,add28, add29, add30, add31;
+    wire [63:0] ext0, ext1, ext2, ext3, ext4, ext5, ext6, ext7, ext8, ext9, ext10, ext11, ext12, ext13, ext14, ext15, ext16, ext17, ext18, ext19, ext20, ext21, ext22, ext23, ext24, ext25, ext26, ext27, ext28, ext29, ext30;
+    output [63:0] product;
+
+    arrand and0(a, b[0], ab0);
+    arrand and1(a, b[1], ab1);
+    arrand and2(a, b[2], ab2);
+    arrand and3(a, b[3], ab3);
+	arrand and4(a, b[4], ab4);
+	arrand and5(a, b[5], ab5);
+	arrand and6(a, b[6], ab6);
+    arrand and7(a, b[7], ab7);
+    arrand and8(a, b[8], ab8);
+    arrand and9(a, b[9], ab9);
+	arrand and10(a, b[10], ab10);
+	arrand and11(a, b[11], ab11);
+	arrand and12(a, b[12], ab12);
+    arrand and13(a, b[13], ab13);
+    arrand and14(a, b[14], ab14);
+    arrand and15(a, b[15], ab15);
+	arrand and16(a, b[16], ab16);
+	arrand and17(a, b[17], ab17);
+    arrand and18(a, b[18], ab18);
+    arrand and19(a, b[19], ab19);
+    arrand and20(a, b[20], ab20);
+	arrand and21(a, b[21], ab21);
+	arrand and22(a, b[22], ab22);
+	arrand and23(a, b[23], ab23);
+    arrand and24(a, b[24], ab24);
+    arrand and25(a, b[25], ab25);
+    arrand and26(a, b[26], ab26);
+	arrand and27(a, b[27], ab27);
+	arrand and28(a, b[28], ab28);
+	arrand and29(a, b[29], ab29);
+    arrand and30(a, b[30], ab30);
+    arrand and31(a, b[31], ab31);
+
+    assign add0 = {{32{ab0[31]}}, ab0};
+    assign add1 = {{31{ab1[31]}}, ab1, 1'b0};
+    assign add2 = {{30{ab2[31]}}, ab2, 2'b0};
+    assign add3 = {{29{ab3[31]}}, ab3, 3'b0};
+	assign add4 = {{28{ab4[31]}}, ab4 ,4'b0};
+    assign add5 = {{27{ab5[31]}}, ab5, 5'b0};
+    assign add6 = {{26{ab6[31]}}, ab6, 6'b0};
+    assign add7 = {{25{ab7[31]}}, ab7, 7'b0};
+	assign add8 = {{24{ab8[31]}}, ab8 ,8'b0};
+    assign add9 = {{23{ab9[31]}}, ab9, 9'b0};
+    assign add10 = {{22{ab10[31]}}, ab10, 10'b0};
+    assign add11 = {{21{ab11[31]}}, ab11, 11'b0};
+	assign add12 = {{20{ab12[31]}}, ab12, 12'b0};
+    assign add13 = {{19{ab13[31]}}, ab13, 13'b0};
+    assign add14 = {{18{ab14[31]}}, ab14, 14'b0};
+    assign add15 = {{17{ab15[31]}}, ab15, 15'b0};
+	assign add16 = {{16{ab16[31]}}, ab16, 16'b0};
+    assign add17 = {{15{ab17[31]}}, ab17, 17'b0};
+    assign add18 = {{14{ab18[31]}}, ab18, 18'b0};
+    assign add19 = {{13{ab19[31]}}, ab19, 19'b0};
+	assign add20 = {{12{ab20[31]}}, ab20, 20'b0};
+    assign add21 = {{11{ab21[31]}}, ab21, 21'b0};
+    assign add22 = {{10{ab22[31]}}, ab22, 22'b0};
+    assign add23 = {{9{ab23[31]}}, ab23, 23'b0};
+	assign add24 = {{8{ab24[31]}}, ab24, 24'b0};
+    assign add25 = {{7{ab25[31]}}, ab25, 25'b0};
+    assign add26 = {{6{ab26[31]}}, ab26, 26'b0};
+    assign add27 = {{5{ab27[31]}}, ab27, 27'b0};
+	assign add28 = {{4{ab28[31]}}, ab28, 28'b0};
+    assign add29 = {{3{ab29[31]}}, ab29, 29'b0};
+    assign add30 = {{2{ab30[31]}}, ab30, 30'b0};
+    assign add31 = {1'b0, ab31, 31'b0};
+	
+    assign ext0 = {{32{ab31[0]}}, 32'b0};
+    assign ext1 = {{31{ab31[1]}}, 33'b0};
+    assign ext2 = {{30{ab31[2]}}, 34'b0};
+	assign ext3 = {{29{ab31[3]}}, 35'b0};
+    assign ext4 = {{28{ab31[4]}}, 36'b0};
+    assign ext5 = {{27{ab31[5]}}, 37'b0};
+	assign ext6 = {{26{ab31[6]}}, 38'b0};
+    assign ext7 = {{25{ab31[7]}}, 39'b0};
+    assign ext8 = {{24{ab31[8]}}, 40'b0};
+	assign ext9 = {{23{ab31[9]}}, 41'b0};
+    assign ext10 = {{22{ab31[10]}}, 42'b0};
+    assign ext11 = {{21{ab31[11]}}, 43'b0};
+	assign ext12 = {{20{ab31[12]}}, 44'b0};
+    assign ext13 = {{19{ab31[13]}}, 45'b0};
+    assign ext14 = {{18{ab31[14]}}, 46'b0};
+	assign ext15 = {{17{ab31[15]}}, 47'b0};
+    assign ext16 = {{16{ab31[16]}}, 48'b0};
+    assign ext17 = {{15{ab31[17]}}, 49'b0};
+	assign ext18 = {{14{ab31[18]}}, 50'b0};
+    assign ext19 = {{13{ab31[19]}}, 51'b0};
+    assign ext20 = {{12{ab31[20]}}, 52'b0};
+	assign ext21 = {{11{ab31[21]}}, 53'b0};
+    assign ext22 = {{10{ab31[22]}}, 54'b0};
+    assign ext23 = {{9{ab31[23]}}, 55'b0};
+	assign ext24 = {{8{ab31[24]}}, 56'b0};
+    assign ext25 = {{7{ab31[25]}}, 57'b0};
+    assign ext26 = {{6{ab31[26]}}, 58'b0};
+	assign ext27 = {{5{ab31[27]}}, 59'b0};
+    assign ext28 = {{4{ab31[28]}}, 60'b0};
+    assign ext29 = {{3{ab31[29]}}, 61'b0};
+	assign ext30 = {{2{ab31[30]}}, 62'b0};
+
+    assign product = add0 + add1 + add2 + add3 + add4 + add5 + add6 + add7 + add8 + add9 + add10 + add11 + add12 + add13 + add14 + add15 + add16 +add17 + add18  + add19 + add20 + add21 + add22 + add23 + add24 + add25 + add26
+					+ add27 + add28 + add29 + add30 + add31 + ext0 + ext1 + ext2 + ext3 + ext4 + ext5 + ext6 + ext7 + ext8 + ext9 + ext10 + ext11 + ext12 + ext13 + ext14 + ext15 + ext16 + ext17 + ext18 + ext19 + ext20 
+					+ ext21 + ext22 + ext23 + ext24 + ext25 + ext26 + ext27 + ext28 + ext29 + ext30;
+
+
+endmodule
+
+module arrand(a, b, ab);
+    input [31:0] a;
+    input b;
+    output [31:0] ab;
+
+    assign ab[0] = a[0] & b;
+    assign ab[1] = a[1] & b;
+    assign ab[2] = a[2] & b;
+    assign ab[3] = a[3] & b;
+	assign ab[4] = a[4] & b;
+    assign ab[5] = a[5] & b;
+    assign ab[6] = a[6] & b;
+    assign ab[7] = a[7] & b;
+	assign ab[8] = a[8] & b;
+    assign ab[9] = a[9] & b;
+    assign ab[10] = a[10] & b;
+    assign ab[11] = a[11] & b;
+	assign ab[12] = a[12] & b;
+    assign ab[13] = a[13] & b;
+    assign ab[14] = a[14] & b;
+    assign ab[15] = a[15] & b;
+	assign ab[16] = a[16] & b;
+    assign ab[17] = a[17] & b;
+    assign ab[18] = a[18] & b;
+    assign ab[19] = a[19] & b;
+	assign ab[20] = a[20] & b;
+    assign ab[21] = a[21] & b;
+    assign ab[22] = a[22] & b;
+    assign ab[23] = a[23] & b;
+	assign ab[24] = a[24] & b;
+    assign ab[25] = a[25] & b;
+    assign ab[26] = a[26] & b;
+    assign ab[27] = a[27] & b;
+	assign ab[28] = a[28] & b;
+    assign ab[29] = a[29] & b;
+    assign ab[30] = a[30] & b;
+    assign ab[31] = a[31] & b;
+endmodule

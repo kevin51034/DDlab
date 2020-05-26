@@ -1,19 +1,16 @@
 `timescale 1ns/1ps
 
-module RCA_16bit(a,b,c0,sum,c16);
+module RCA_16bit(a,b,cin,sum,cout);
 
     input [15:0] a,b;
-    input c0;
+    input cin;
     output [15:0] sum;
-    output c16;
+    output cout;
 
-	wire  carry;
+	wire  c;
     
 	//--- Write your design here ---//
-	
-    RCA_8bit FA0(a[7:0],b[7:0],c0,sum[7:0],carry);
-	RCA_8bit FA1(a[15:8],b[15:8],carry,sum[15:8],c16);
-	
+
 	//--- Write your design here ---//
 
 endmodule
@@ -29,16 +26,7 @@ module RCA_8bit(a,b,cin,sum,cout);
 	wire [7:0] c;
     
 	//--- Write your design here ---//
-	
-    fulladder fa0(a[0],b[0],cin,sum[0],c[0]);
-	fulladder fa1(a[1],b[1],c[0],sum[1],c[1]);
-	fulladder fa2(a[2],b[2],c[1],sum[2],c[2]);
-	fulladder fa3(a[3],b[3],c[2],sum[3],c[3]);
-	fulladder fa4(a[4],b[4],c[3],sum[4],c[4]);
-	fulladder fa5(a[5],b[5],c[4],sum[5],c[5]);
-	fulladder fa6(a[6],b[6],c[5],sum[6],c[6]);
-	fulladder fa7(a[7],b[7],c[6],sum[7],c[7]);
-	
+
 	//--- Write your design here ---//
 
 	assign cout = c[7];
@@ -51,8 +39,8 @@ module fulladder(a,b,cin,sum,cout);
 	output sum,cout;
 	wire x,y,z,q;
 
-    assign sum = (a ^ b) ^ cin;
-    assign cout = ((a & b) | ((a | b) & cin));
+    //sum = (a ^ b) ^ cin;
+    //cout = ((a & b) | ((a | b) & cin));
 	
 	xorgate xor1 (a,b,x);
 	xorgate xor2(x,cin,sum);
