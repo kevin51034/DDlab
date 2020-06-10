@@ -1,28 +1,28 @@
 `timescale 1ns/1ps
 //`include "4bit_MPY.v"
 // `include "sign_ext_mpy.v"
-`include "booth_MPY.v"
+//`include "booth.v"
 `define SIGNED
 
 module tb;
     reg clk;
     `ifdef SIGNED
-    reg signed [3:0] a, b;
-    wire signed [7:0] product;
-    wire signed [7:0] correct_answer;
+    reg signed [7:0] a, b;
+    wire signed [15:0] product;
+    wire signed [15:0] correct_answer;
     `else
-    reg [3:0] a, b;
-    wire [7:0] product; 
-    wire [7:0] correct_answer;
+    reg [7:0] a, b;
+    wire [15:0] product; 
+    wire [15:0] correct_answer;
     `endif
     
-    reg [3:0] cnt;
-    reg [3:0] pattern_cnt;
-    reg [3:0] total_correct;
+    reg [7:0] cnt;
+    reg [7:0] pattern_cnt;
+    reg [7:0] total_correct;
     integer i, j;
 
     initial begin
-        $dumpfile("MPY.fsdb");
+        $dumpfile("lab.fsdb");
         $dumpvars;
     end
 
@@ -32,7 +32,7 @@ module tb;
     end
 
     // MPY MPY(clk, a, b, product);
-    MPY MPY(clk,a, b, product);
+    lab lab(clk,a, b, product);
     assign correct_answer = a * b;
 
     //testbench main
@@ -54,8 +54,8 @@ module tb;
     //testing pattern
     task pattern;
     begin
-        a <= {$random} % 16;
-        b <= {$random} % 16;
+        a <= {$random} % 256;
+        b <= {$random} % 256;
         pattern_cnt <= pattern_cnt + 1'b1;
 
         for (j = 0; j < 8 ; j = j + 1) begin
